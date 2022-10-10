@@ -1,0 +1,492 @@
+/*
+if(cond >0){
+    //EN CARA U, PARA LA POSICION 0,0-----------------------------------------------------------------------------------
+    if(!(state->cube->U[0][0] == WHITE || state->cube->L[0][0] == WHITE || state->cube->B[0][2] == WHITE)){heuristic++;i++;}
+    if(!(state->cube->U[0][0] == ORANGE || state->cube->L[0][0] == ORANGE || state->cube->B[0][2] == ORANGE)){heuristic++;i++;}
+    if(!(state->cube->U[0][0] == GREEN || state->cube->L[0][0] == GREEN || state->cube->B[0][2] == GREEN)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->U[0][0] == WHITE)){heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->U[0][0] == YELLOW ||state->cube->L[0][0] == BLUE || state->cube->B[0][2] == RED){heuristic+=3;}}
+    //------------------------------------------------------------------------------------------------------------------
+    i=0;
+    //EN CARA U, PARA LA POSICION 0,2
+    if(!(state->cube->U[0][2] == WHITE || state->cube->R[0][2] == WHITE || state->cube->B[0][0] == WHITE)){heuristic++;i++;}
+    if(!(state->cube->U[0][2] == ORANGE || state->cube->R[0][2] == ORANGE || state->cube->B[0][0] == ORANGE)){heuristic++;i++;}
+    if(!(state->cube->U[0][2] == BLUE || state->cube->R[0][2] == BLUE || state->cube->B[0][0] == BLUE)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->U[0][2] == WHITE)){heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->U[0][2] == YELLOW || state->cube->R[0][2] == GREEN || state->cube->B[0][0] == RED){heuristic+=3;}}
+    //------------------------------------------------------------------------------------------------------------------
+    i=0;
+    //EN CARA U, PARA LA POSICION 2,0
+    if(!(state->cube->U[2][0] == WHITE || state->cube->L[0][2] == WHITE || state->cube->F[0][0] == WHITE)){heuristic++;i++;}
+    if(!(state->cube->U[2][0] == RED || state->cube->L[0][2] == RED || state->cube->F[0][0] == RED)){heuristic++;i++;}
+    if(!(state->cube->U[2][0] == GREEN || state->cube->L[0][2] == GREEN || state->cube->F[0][0] == GREEN)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->U[2][0] == WHITE)){heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->U[2][0] == YELLOW ||state->cube->L[0][2] == BLUE || state->cube->F[0][0] == ORANGE){heuristic+=3;}}
+    //------------------------------------------------------------------------------------------------------------------
+    i=0;
+    //EN CARA U, PARA LA POSICION 2,2
+    if(!(state->cube->U[2][2] == WHITE || state->cube->R[0][0] == WHITE || state->cube->F[0][2] == WHITE)){heuristic++;i++;}
+    if(!(state->cube->U[2][2] == RED || state->cube->R[0][0] == RED || state->cube->F[0][2] == RED)){heuristic++;i++;}
+    if(!(state->cube->U[2][2] == BLUE || state->cube->R[0][0] == BLUE || state->cube->F[0][2] == BLUE)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->U[2][2] == WHITE)){heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->U[2][2] == YELLOW ||state->cube->R[0][0] == GREEN ||state->cube->F[0][2] == ORANGE){heuristic+=3;}}
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    i=0;
+    //EN CARA D, PARA LA POSICION 0,0
+    if(!(state->cube->D[0][0] == YELLOW || state->cube->L[2][2] == YELLOW || state->cube->F[2][0] == YELLOW)){heuristic++;i++;}
+    if(!(state->cube->D[0][0] == RED || state->cube->L[2][2] == RED || state->cube->F[2][0] == RED)){heuristic++;i++;}
+    if(!(state->cube->D[0][0] == GREEN || state->cube->L[2][2] == GREEN || state->cube->F[2][0] == GREEN)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->D[0][0] == YELLOW)){heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->D[0][0] == WHITE ||state->cube->L[2][2] == BLUE ||state->cube->F[2][0] == ORANGE){heuristic+=3;}}
+    //------------------------------------------------------------------------------------------------------------------
+    i=0;
+    //EN CARA D, PARA LA POSICION 0,2
+    if(!(state->cube->D[0][2] == YELLOW || state->cube->R[2][0] == YELLOW || state->cube->F[2][2] == YELLOW)){heuristic++;i++;}
+    if(!(state->cube->D[0][2] == RED || state->cube->R[2][0] == RED || state->cube->F[2][2] == RED)){heuristic++;i++;}
+    if(!(state->cube->D[0][2] == BLUE || state->cube->R[2][0] == BLUE || state->cube->F[2][2] == BLUE)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->D[0][2] == YELLOW)){heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->D[0][2] == WHITE ||state->cube->R[2][0] == GREEN ||state->cube->F[2][2] == ORANGE){heuristic+=3;}}
+    //------------------------------------------------------------------------------------------------------------------
+    i=0;
+    //EN CARA D, PARA LA POSICION 2,0
+    if(!(state->cube->D[2][0] == YELLOW || state->cube->L[2][0] == YELLOW || state->cube->B[2][2] == YELLOW)){heuristic++;i++;}
+    if(!(state->cube->D[2][0] == ORANGE || state->cube->L[2][0] == ORANGE || state->cube->B[2][2] == ORANGE)){heuristic++;i++;}
+    if(!(state->cube->D[2][0] == GREEN || state->cube->L[2][0] == GREEN || state->cube->B[2][2] == GREEN)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->D[2][0] == YELLOW)){heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->D[2][0] == WHITE ||state->cube->L[2][0] == BLUE ||state->cube->B[2][2] == RED){heuristic+=3;}}
+    //------------------------------------------------------------------------------------------------------------------
+    i=0;
+    //EN CARA D, PARA LA POSICION 2,2
+    if(!(state->cube->D[2][2] == YELLOW || state->cube->R[2][2] == YELLOW || state->cube->B[2][0] == YELLOW)){heuristic++;i++;}
+    if(!(state->cube->D[2][2] == ORANGE || state->cube->R[2][2] == ORANGE || state->cube->B[2][0] == ORANGE)){heuristic++;i++;}
+    if(!(state->cube->D[2][2] == BLUE || state->cube->R[2][2] == BLUE || state->cube->B[2][0] == BLUE)){heuristic++;i++;}
+    //significa que esta bien ubicado pero no sabemos su orientacion
+    if(i == 0){if(!(state->cube->D[2][2] == YELLOW)){ heuristic += 2;}}
+    //cuando solo esta a un movimiento, puede encajar directamente o se requierre mas de 1 movimiento para que tenga buena su orientacion
+    if(i==1){if(state->cube->D[2][2] == WHITE ||state->cube->R[2][2] == GREEN ||state->cube->B[2][0] == RED){heuristic+=3;}}
+    //------------------------------------------------------------------------------------------------------------------
+    return heuristic;
+
+    
+    //------------------------------------------------------------------------------------------------------------------
+
+    //FOR WHITE AND ORANGE
+    if((state->cube->U[0][1]==WHITE && (state->cube->B[0][1] == (GREEN || BLUE)))
+    ||(state->cube->B[0][1]==ORANGE && (state->cube->U[0][1] == (GREEN || BLUE)))){heuristic++;}
+    if((state->cube->U[0][1]==WHITE && state->cube->B[0][1] == RED) 
+    || (state->cube->B[0][1]==ORANGE && state->cube->U[0][1] == YELLOW)
+    || (state->cube->U[0][1] == (GREEN || BLUE) && state->cube->B[0][1] == WHITE)
+    || (state->cube->B[0][1] == (GREEN || BLUE) && state->cube->U[0][1] == ORANGE)
+    || (state->cube->B[0][1] == (GREEN || BLUE) && state->cube->U[0][1] == RED)
+    || (state->cube->U[0][1] == (GREEN || BLUE) && state->cube->B[0][1] == YELLOW)){heuristic+=2;}
+    if((state->cube->U[0][1] == ORANGE && state->cube->B[0][1] == WHITE)
+    || (state->cube->U[0][1] == RED && state->cube->B[0][1] == WHITE)
+    || (state->cube->D[0][1] == YELLOW && state->cube->U[0][1] == ORANGE)
+    || (state->cube->U[0][1] == (GREEN || BLUE) && state->cube->B[0][1] == RED)
+    || (state->cube->B[0][1] == (GREEN || BLUE) && state->cube->U[0][1] == YELLOW)
+    || (state->cube->U[0][1] == RED && state->cube->B[0][1] == YELLOW)){heuristic+=3;}
+    if(state->cube->U[0][1] == YELLOW && state->cube->B[0][1] == RED){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR WHITE AND GREEN
+    if((state->cube->U[1][0]==WHITE && (state->cube->L[0][1] == (RED || ORANGE)))
+    ||(state->cube->L[0][1]==GREEN && (state->cube->U[1][0] == (RED || ORANGE)))){heuristic++;}
+    if((state->cube->U[1][0]==WHITE && state->cube->L[0][1] == BLUE)
+    || (state->cube->L[0][1]==GREEN && state->cube->U[1][0] == YELLOW)
+    || (state->cube->U[1][0] == (RED || ORANGE) && state->cube->L[0][1] == WHITE)
+    || (state->cube->L[0][1] == (RED || ORANGE) && state->cube->U[1][0] == GREEN)
+    || (state->cube->L[0][1] == (RED || ORANGE) && state->cube->U[1][0] == BLUE)
+    || (state->cube->U[1][0] == (RED || ORANGE) && state->cube->L[0][1] == YELLOW)){heuristic+=2;}
+    if((state->cube->U[1][0] == GREEN && state->cube->L[0][1] == WHITE)
+    || (state->cube->U[1][0] == BLUE && state->cube->L[0][1] == WHITE)
+    || (state->cube->D[1][0] == YELLOW && state->cube->U[1][0] == GREEN)
+    || (state->cube->U[1][0] == (RED || ORANGE) && state->cube->L[0][1] == BLUE)
+    || (state->cube->L[0][1] == (RED || ORANGE) && state->cube->U[1][0] == YELLOW)
+    || (state->cube->U[1][0] == BLUE && state->cube->L[0][1] == YELLOW)){heuristic+=3;}
+    if(state->cube->U[1][0] == YELLOW && state->cube->L[0][1] == BLUE){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR WHITE AND BLUE
+    if((state->cube->U[1][2]==WHITE && (state->cube->R[0][1] == (RED || ORANGE)))
+    ||(state->cube->R[0][1]==BLUE && (state->cube->U[1][2] == (RED || ORANGE)))){heuristic++;}
+    if((state->cube->U[1][2]==WHITE && state->cube->R[0][1] == GREEN)
+    || (state->cube->R[0][1]==BLUE && state->cube->U[1][2] == YELLOW)
+    || (state->cube->U[1][2] == (RED || ORANGE) && state->cube->R[0][1] == WHITE)
+    || (state->cube->R[0][1] == (RED || ORANGE) && state->cube->U[1][2] == BLUE)
+    || (state->cube->R[0][1] == (RED || ORANGE) && state->cube->U[1][2] == GREEN)
+    || (state->cube->U[1][2] == (RED || ORANGE) && state->cube->R[0][1] == YELLOW)){heuristic+=2;}
+    if((state->cube->U[1][2] == BLUE && state->cube->R[0][1] == WHITE)
+    || (state->cube->U[1][2] == GREEN && state->cube->R[0][1] == WHITE)
+    || (state->cube->D[1][2] == YELLOW && state->cube->U[1][2] == BLUE)
+    || (state->cube->U[1][2] == (RED || ORANGE) && state->cube->R[0][1] == GREEN)
+    || (state->cube->R[0][1] == (RED || ORANGE) && state->cube->U[1][2] == YELLOW)
+    || (state->cube->U[1][2] == GREEN && state->cube->R[0][1] == YELLOW)){heuristic+=3;}
+    if(state->cube->U[1][2] == YELLOW && state->cube->R[0][1] == GREEN){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR WHITE AND RED
+    if((state->cube->U[2][1]==WHITE && (state->cube->F[0][1] == (GREEN || BLUE)))
+    ||(state->cube->F[0][1]==RED && (state->cube->U[2][1] == (GREEN || BLUE)))){heuristic++;}
+    if((state->cube->U[2][1]==WHITE && state->cube->F[0][1] == ORANGE)
+    || (state->cube->F[0][1]==RED && state->cube->U[2][1] == YELLOW)
+    || (state->cube->U[2][1] == (GREEN || BLUE) && state->cube->F[0][1] == WHITE)
+    || (state->cube->F[0][1] == (GREEN || BLUE) && state->cube->U[2][1] == RED)
+    || (state->cube->F[0][1] == (GREEN || BLUE) && state->cube->U[2][1] == ORANGE)
+    || (state->cube->U[2][1] == (GREEN || BLUE) && state->cube->F[0][1] == YELLOW)){heuristic+=2;}
+    if((state->cube->U[2][1] == RED && state->cube->F[0][1] == WHITE)
+    || (state->cube->U[2][1] == ORANGE && state->cube->F[0][1] == WHITE)
+    || (state->cube->D[2][1] == YELLOW && state->cube->U[2][1] == RED)
+    || (state->cube->U[2][1] == (GREEN || BLUE) && state->cube->F[0][1] == ORANGE)
+    || (state->cube->F[0][1] == (GREEN || BLUE) && state->cube->U[2][1] == YELLOW)
+    || (state->cube->U[2][1] == ORANGE && state->cube->F[0][1] == YELLOW)){heuristic+=3;}
+    if(state->cube->U[2][1] == YELLOW && state->cube->F[0][1] == ORANGE){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR YELLOW AND ORANGE
+    if((state->cube->D[2][1]==YELLOW && (state->cube->B[2][1] == (BLUE || GREEN)))
+    ||(state->cube->B[2][1]==ORANGE && (state->cube->D[2][1] == (BLUE || GREEN)))){heuristic++;}
+    if((state->cube->D[2][1]==YELLOW && state->cube->B[2][1] == RED)
+    || (state->cube->B[2][1]==ORANGE && state->cube->D[2][1] == WHITE)
+    || (state->cube->D[2][1] == (BLUE || GREEN) && state->cube->B[2][1] == YELLOW)
+    || (state->cube->B[2][1] == (BLUE || GREEN) && state->cube->D[2][1] == ORANGE)
+    || (state->cube->B[2][1] == (BLUE || GREEN) && state->cube->D[2][1] == RED)
+    || (state->cube->D[2][1] == (BLUE || GREEN) && state->cube->B[2][1] == WHITE)){heuristic+=2;}
+    if((state->cube->D[2][1] == ORANGE && state->cube->B[2][1] == YELLOW)
+    || (state->cube->D[2][1] == RED && state->cube->B[2][1] == YELLOW)
+    || (state->cube->U[2][1] == WHITE && state->cube->D[2][1] == ORANGE)
+    || (state->cube->D[2][1] == (BLUE || GREEN) && state->cube->B[2][1] == RED)
+    || (state->cube->B[2][1] == (BLUE || GREEN) && state->cube->D[2][1] == WHITE)
+    || (state->cube->D[2][1] == RED && state->cube->B[2][1] == WHITE)){heuristic+=3;}
+    if(state->cube->D[2][1] == WHITE && state->cube->B[2][1] == RED){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR YELLOW AND BLUE
+    if((state->cube->D[1][2]==YELLOW && (state->cube->R[2][1] == (RED || ORANGE)))
+    ||(state->cube->R[2][1]==BLUE && (state->cube->D[1][2] == (RED || ORANGE)))){heuristic++;}
+    if((state->cube->D[1][2]==YELLOW && state->cube->R[2][1] == GREEN)
+    || (state->cube->R[2][1]==BLUE && state->cube->D[1][2] == WHITE)
+    || (state->cube->D[1][2] == (RED || ORANGE) && state->cube->R[2][1] == YELLOW)
+    || (state->cube->R[2][1] == (RED || ORANGE) && state->cube->D[1][2] == BLUE)
+    || (state->cube->R[2][1] == (RED || ORANGE) && state->cube->D[1][2] == GREEN)
+    || (state->cube->D[1][2] == (RED || ORANGE) && state->cube->R[2][1] == WHITE)){heuristic+=2;}
+    if((state->cube->D[1][2] == BLUE && state->cube->R[2][1] == YELLOW)
+    || (state->cube->D[1][2] == GREEN && state->cube->R[2][1] == YELLOW)
+    || (state->cube->U[1][2] == WHITE && state->cube->D[1][2] == BLUE)
+    || (state->cube->D[1][2] == (RED || ORANGE) && state->cube->R[2][1] == GREEN)
+    || (state->cube->R[2][1] == (RED || ORANGE) && state->cube->D[1][2] == WHITE)
+    || (state->cube->D[1][2] == GREEN && state->cube->R[2][1] == WHITE)){heuristic+=3;}
+    if(state->cube->D[1][2] == WHITE && state->cube->R[2][1] == GREEN){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR YELLOW AND GREEN
+    if((state->cube->D[1][0]==YELLOW && (state->cube->L[2][1] == (RED || ORANGE)))
+    ||(state->cube->L[2][1]==GREEN && (state->cube->D[1][0] == (RED || ORANGE)))){heuristic++;}
+    if((state->cube->D[1][0]==YELLOW && state->cube->L[2][1] == BLUE)
+    || (state->cube->L[2][1]==GREEN && state->cube->D[1][0] == WHITE)
+    || (state->cube->D[1][0] == (RED || ORANGE) && state->cube->L[2][1] == YELLOW)
+    || (state->cube->L[2][1] == (RED || ORANGE) && state->cube->D[1][0] == GREEN)
+    || (state->cube->L[2][1] == (RED || ORANGE) && state->cube->D[1][0] == BLUE)
+    || (state->cube->D[1][0] == (RED || ORANGE) && state->cube->L[2][1] == WHITE)){heuristic+=2;}
+    if((state->cube->D[1][0] == GREEN && state->cube->L[2][1] == YELLOW)
+    || (state->cube->D[1][0] == BLUE && state->cube->L[2][1] == YELLOW)
+    || (state->cube->U[1][0] == WHITE && state->cube->D[1][0] == GREEN)
+    || (state->cube->D[1][0] == (RED || ORANGE) && state->cube->L[2][1] == BLUE)
+    || (state->cube->L[2][1] == (RED || ORANGE) && state->cube->D[1][0] == WHITE)
+    || (state->cube->D[1][0] == BLUE && state->cube->L[2][1] == WHITE)){heuristic+=3;}
+    if(state->cube->D[1][0] == WHITE && state->cube->L[2][1] == BLUE){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR YELLOW AND RED
+    if((state->cube->D[0][1]==YELLOW && (state->cube->F[2][1] == (BLUE || GREEN)))
+    ||(state->cube->F[2][1]==RED && (state->cube->D[0][1] == (BLUE || GREEN)))){heuristic++;}
+    if((state->cube->D[0][1]==YELLOW && state->cube->F[2][1] == ORANGE)
+    || (state->cube->F[2][1]==RED && state->cube->D[0][1] == WHITE)
+    || (state->cube->D[0][1] == (BLUE || GREEN) && state->cube->F[2][1] == YELLOW)
+    || (state->cube->F[2][1] == (BLUE || GREEN) && state->cube->D[0][1] == RED)
+    || (state->cube->F[2][1] == (BLUE || GREEN) && state->cube->D[0][1] == ORANGE)
+    || (state->cube->D[0][1] == (BLUE || GREEN) && state->cube->F[2][1] == WHITE)){heuristic+=2;}
+    if((state->cube->D[0][1] == RED && state->cube->F[2][1] == YELLOW)
+    || (state->cube->D[0][1] == ORANGE && state->cube->F[2][1] == YELLOW)
+    || (state->cube->U[0][1] == WHITE && state->cube->D[0][1] == RED)
+    || (state->cube->D[0][1] == (BLUE || GREEN) && state->cube->F[2][1] == ORANGE)
+    || (state->cube->F[2][1] == (BLUE || GREEN) && state->cube->D[0][1] == WHITE)
+    || (state->cube->D[0][1] == ORANGE && state->cube->F[2][1] == WHITE)){heuristic+=3;}
+    if(state->cube->D[0][1] == WHITE && state->cube->F[2][1] == ORANGE){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR GREEN AND RED
+    if((state->cube->F[1][0]==RED && (state->cube->L[1][2] == (WHITE||YELLOW)))
+    ||(state->cube->L[1][2]==GREEN && (state->cube->F[1][0] == (WHITE||YELLOW)))){heuristic++;}
+    if((state->cube->F[1][0]==RED && state->cube->L[1][2] == ORANGE)
+    || (state->cube->L[1][2]==GREEN && state->cube->F[1][0] == BLUE)
+    || (state->cube->F[1][0] == (WHITE||YELLOW) && state->cube->L[1][2] == RED)
+    || (state->cube->L[1][2] == (WHITE||YELLOW) && state->cube->F[1][0] == GREEN)
+    || (state->cube->L[1][2] == (WHITE||YELLOW) && state->cube->F[1][0] == ORANGE)
+    || (state->cube->F[1][0] == (WHITE||YELLOW) && state->cube->L[1][2] == BLUE)){heuristic+=2;}
+    if((state->cube->F[1][0] == GREEN && state->cube->L[1][2] == RED)
+    || (state->cube->F[1][0] == ORANGE && state->cube->L[1][2] == RED)
+    || (state->cube->F[1][0] == (WHITE||YELLOW) && state->cube->L[1][2] == GREEN)
+    || (state->cube->F[1][0] == ORANGE && state->cube->L[1][2] == BLUE)
+    || (state->cube->L[1][2] == (WHITE||YELLOW) && state->cube->F[1][0] == BLUE)
+    || (state->cube->F[1][0] == (WHITE||YELLOW) && state->cube->L[1][2] == ORANGE)){heuristic+=3;}
+    if(state->cube->F[1][0] == BLUE && state->cube->L[1][2] == GREEN){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR BLUE AND RED
+    if((state->cube->F[1][2]==RED && (state->cube->R[1][0] == (WHITE||YELLOW)))
+    ||(state->cube->R[1][0]==BLUE && (state->cube->F[1][2] == (WHITE||YELLOW)))){heuristic++;}
+    if((state->cube->F[1][2]==RED && state->cube->R[1][0] == ORANGE)
+    || (state->cube->R[1][0]==BLUE && state->cube->F[1][2] == GREEN)
+    || (state->cube->F[1][2] == (WHITE||YELLOW) && state->cube->R[1][0] == RED)
+    || (state->cube->R[1][0] == (WHITE||YELLOW) && state->cube->F[1][2] == BLUE)
+    || (state->cube->R[1][0] == (WHITE||YELLOW) && state->cube->F[1][2] == ORANGE)
+    || (state->cube->F[1][2] == (WHITE||YELLOW) && state->cube->R[1][0] == GREEN)){heuristic+=2;}
+    if((state->cube->F[1][2] == BLUE && state->cube->R[1][0] == RED)
+    || (state->cube->F[1][2] == ORANGE && state->cube->R[1][0] == RED)
+    || (state->cube->F[1][2] == (WHITE||YELLOW) && state->cube->R[1][0] == BLUE)
+    || (state->cube->F[1][2] == ORANGE && state->cube->R[1][0] == GREEN)
+    || (state->cube->R[1][0] == (WHITE||YELLOW) && state->cube->F[1][2] == GREEN)
+    || (state->cube->F[1][2] == (WHITE||YELLOW) && state->cube->R[1][0] == ORANGE)){heuristic+=3;}
+    if(state->cube->F[1][2] == GREEN && state->cube->R[1][0] == BLUE){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR GREEN AND ORANGE
+    if((state->cube->L[1][0]==GREEN && (state->cube->B[1][2] == (WHITE||YELLOW)))
+    ||(state->cube->B[1][2]==ORANGE && (state->cube->L[1][0] == (WHITE||YELLOW)))){heuristic++;}
+    if((state->cube->L[1][0]==GREEN && state->cube->B[1][2] == BLUE)
+    || (state->cube->B[1][2]==ORANGE && state->cube->L[1][0] == RED)
+    || (state->cube->L[1][0] == (WHITE||YELLOW) && state->cube->B[1][2] == GREEN)
+    || (state->cube->B[1][2] == (WHITE||YELLOW) && state->cube->L[1][0] == ORANGE)
+    || (state->cube->B[1][2] == (WHITE||YELLOW) && state->cube->L[1][0] == BLUE)
+    || (state->cube->L[1][0] == (WHITE||YELLOW) && state->cube->B[1][2] == RED)){heuristic+=2;}
+    if((state->cube->L[1][0] == ORANGE && state->cube->B[1][2] == GREEN)
+    || (state->cube->L[1][0] == BLUE && state->cube->B[1][2] == GREEN)
+    || (state->cube->L[1][0] == (WHITE||YELLOW) && state->cube->B[1][2] == ORANGE)
+    || (state->cube->L[1][0] == BLUE && state->cube->B[1][2] == RED)
+    || (state->cube->B[1][2] == (WHITE||YELLOW) && state->cube->L[1][0] == RED)
+    || (state->cube->L[1][0] == (WHITE||YELLOW) && state->cube->B[1][2] == BLUE)){heuristic+=3;}
+    if(state->cube->L[1][0] == RED && state->cube->B[1][2] == ORANGE){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    //FOR ORANGE AND BLUE
+    if((state->cube->R[1][2]==ORANGE && (state->cube->B[1][0] == (WHITE||YELLOW)))
+    ||(state->cube->B[1][0]==BLUE && (state->cube->R[1][2] == (WHITE||YELLOW)))){heuristic++;}
+    if((state->cube->R[1][2]==ORANGE && state->cube->B[1][0] == GREEN)
+    || (state->cube->B[1][0]==BLUE && state->cube->R[1][2] == RED)
+    || (state->cube->R[1][2] == (WHITE||YELLOW) && state->cube->B[1][0] == ORANGE)
+    || (state->cube->B[1][0] == (WHITE||YELLOW) && state->cube->R[1][2] == BLUE)
+    || (state->cube->B[1][0] == (WHITE||YELLOW) && state->cube->R[1][2] == GREEN)
+    || (state->cube->R[1][2] == (WHITE||YELLOW) && state->cube->B[1][0] == RED)){heuristic+=2;}
+    if((state->cube->R[1][2] == BLUE && state->cube->B[1][0] == ORANGE)
+    || (state->cube->R[1][2] == GREEN && state->cube->B[1][0] == ORANGE)
+    || (state->cube->R[1][2] == (WHITE||YELLOW) && state->cube->B[1][0] == BLUE)
+    || (state->cube->R[1][2] == GREEN && state->cube->B[1][0] == RED)
+    || (state->cube->B[1][0] == (WHITE||YELLOW) && state->cube->R[1][2] == RED)
+    || (state->cube->R[1][2] == (WHITE||YELLOW) && state->cube->B[1][0] == GREEN)){heuristic+=3;}
+    if(state->cube->R[1][2] == RED && state->cube->B[1][0] == BLUE){heuristic+=4;}
+    //------------------------------------------------------------------------------------------------------------------
+    */
+
+
+
+
+
+
+    //funcion para encontrar la cantidad de movimientos que son necesarios para que una arista este en su lugar
+//IDEALMENTE PONER EN COLOR 1 EL COLOR QUE ESTA EN LA PARTE SUPERIOR O INFERIOR 
+//Y EN COLOR 2 EL COLOR QUE ESTA EN LA PARTE FRONTAL
+//EN CASO DE 2 FRONTALES USAR F Y B COMO COLOR 1 Y COLOR 2 COMO R Y L
+/*
+int Rubik_Solver::oneHeuristic(State *state, int num, int color1, int color2){
+    State *temp = state;
+    if((color1 == WHITE) && (color2 == ORANGE)){if((state-> cube -> U[0][1] == color1) && (state-> cube -> B[0][1] == color2)){return num;}}
+    if((color1 == WHITE) && (color2 == RED)){if((state-> cube -> U[2][1] == color1) && (state-> cube -> F[0][1] == color2)){return num;}}
+    if((color1 == WHITE) && (color2 == BLUE)){if((state-> cube -> U[1][2] == color1) && (state-> cube -> R[0][1] == color2)){return num;}}
+    if((color1 == WHITE) && (color2 == GREEN)){if((state-> cube -> U[1][0] == color1) && (state-> cube -> L[0][1] == color2)){return num;}}
+    
+    if(color1 == YELLOW && color2 == ORANGE){if(state-> cube -> D[2][1] == color1 && state-> cube -> B[2][1] == color2){return num;}}
+    if(color1 == YELLOW && color2 == RED){if(state-> cube -> D[0][1] == color1 && state-> cube -> F[2][1] == color2){return num;}}
+    if(color1 == YELLOW && color2 == BLUE){if(state-> cube -> D[1][1] == color1 && state-> cube -> R[2][1] == color2){return num;}}
+    if(color1 == YELLOW && color2 == GREEN){if(state-> cube -> D[1][0] == color1 && state-> cube -> L[2][1] == color2){return num;}}
+    if(color1 == RED && color2 == GREEN){if(state-> cube -> F[1][0] == color1 && state-> cube -> L[1][2] == color2){return num;}}
+    if(color1 == RED && color2 == BLUE){if(state-> cube -> F[1][2] == color1 && state-> cube -> R[1][0] == color2){return num;}}
+    if(color1 == ORANGE && color2 == GREEN){if(state-> cube -> B[1][2] == color1 && state-> cube -> L[1][0] == color2){return num;}}
+    if(color1 == ORANGE && color2 == BLUE){if(state-> cube -> B[1][0] == color1 && state-> cube -> R[1][2] == color2){return num;}}
+    
+    num++;
+    for(int j=0; j<6;j++){
+        for(int s = 1; s >= -1; s-=2){
+            if(num < 5){
+                temp = operators[j]->operate(s, state);
+                return oneHeuristic(temp, num, color1, color2);
+            }else{
+                break;
+            }
+        }
+    }
+}
+*/
+
+
+
+    /*
+    int heuristic = oneHeuristic(state, 0, WHITE, ORANGE) + oneHeuristic(state, 0, WHITE, RED) + oneHeuristic(state, 0, WHITE, BLUE) + oneHeuristic(state, 0, WHITE, GREEN);
+    std::cout << "Heuristica: " << heuristic << std::endl;*/
+    /*
+ 
+    //if(state->cube->isSolved()){
+    //    return -1;
+    //}
+    int i =0;
+    //para cruz
+
+    // Blano con naraja
+    if((U[1][0] == WHITE && L[0][1] == ORANGE) || (U[1][2] == WHITE && R[0][1] == ORANGE)   //LVL2
+    || (B[1][0] == ORANGE && R[1][2] == WHITE) || (B[1][2] == ORANGE && L[1][0] == WHITE)){heuristic += 1;}
+
+    if((U[2][1] == WHITE && F[0][1] == ORANGE) || (D[2][1] == WHITE && B[2][1] == ORANGE)  //LVL3
+    || (U[1][0] == ORANGE && L[0][1] == WHITE) || (U[1][2] == ORANGE && R[0][1] == WHITE)  //LVL2
+    || (B[1][0] == WHITE && R[1][2] == ORANGE) || (B[1][2] == WHITE && L[1][0] == ORANGE)
+    || (F[1][2] == WHITE && R[1][0] == ORANGE) || (F[1][0] == WHITE && L[1][2] == ORANGE)  //LVL4
+    || (R[2][1] == WHITE && D[1][2] == ORANGE) || (L[2][1] == WHITE && D[1][0] == ORANGE)){heuristic += 2;}
+    
+    if((U[1][0] == ORANGE && F[0][1] == WHITE) //LVL1
+    || (F[0][1] == WHITE && U[2][1] == ORANGE) || (B[2][1] == WHITE && D[2][1] == ORANGE) //LVL3
+    || (F[1][2] == ORANGE && R[1][0] == WHITE) || (F[1][0] == ORANGE && L[1][2] == WHITE) //LVL4
+    || (R[2][1] == ORANGE && D[1][2] == WHITE) || (L[2][1] == ORANGE && D[1][0] == WHITE)
+    || (F[2][1] == WHITE && D[0][1] == ORANGE) //LVL5
+    ){heuristic += 3;}
+
+    if(F[2][1] == ORANGE && D[0][1] == WHITE){heuristic += 4;} //LVL5
+*/
+    //if((U[2][1] == WHITE && F[0][1] == GREEN) || (U[0][1] == WHITE && B[0][1] == GREEN)   //LVL2
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+int Rubik_Solver::getHeuristic(State *state, int cond){
+    int heuristic = 0;
+    
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                if (state->cube->U[i][j] == WHITE){
+                    heuristic = heuristic;
+                }else if(state->cube->U[i][j] == YELLOW){ 
+                    heuristic+=2;
+                }else{
+                    heuristic+=1;
+                }
+            }
+        }
+
+    if(0 < cond){
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                if (state->cube->F[i][j] == RED){
+                    heuristic = heuristic;
+                }else if(state->cube->F[i][j] == ORANGE){ 
+                    heuristic += 2;
+                }else{
+                    heuristic+=1;
+                }
+            }
+        }
+
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                if (state->cube->B[i][j] == ORANGE){
+                    heuristic = heuristic;
+                }else if(state->cube->B[i][j] == RED){ 
+                    heuristic += 2;
+                }else{
+                    heuristic+=1;
+                }
+            }
+        }
+
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                if (state->cube->L[i][j] == GREEN){
+                    heuristic = heuristic;
+                }else if(state->cube->L[i][j] == BLUE){ 
+                    heuristic += 2;
+                }else{
+                    heuristic+=1;
+                }
+            }
+        }
+
+                for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                if (state->cube->R[i][j] == BLUE){
+                    heuristic = heuristic;
+                }else if(state->cube->R[i][j] == GREEN){ 
+                    heuristic += 2;
+                }else{
+                    heuristic+=1;
+                }
+            }
+        }
+        
+    }
+    if(1 < cond){
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                if (state->cube->D[i][j] == YELLOW){
+                    heuristic = heuristic;
+                }else if(state->cube->D[i][j] == WHITE){ 
+                    heuristic+=2;
+                }else{
+                    heuristic+=1;
+                }
+            }
+        }
+    }
+
+    return heuristic;
+}
+*/
+
+if(cond == 0){
+    State *sig, *actual;
+    State *inicial = state;
+    openH->insert(inicial);
+    while(!openH->isEmpty()){
+        sig = openH->stateArray[0];
+
+        if(sig->cube->U[0][1]==WHITE){
+            return sig->cost;
+        }
+
+        openH->remove(sig);
+        closedH->insert(sig);
+
+        for(int i = 0; i < 6; i++){                        
+            for(int s = 1; s >= -1; s-=2){
+                sig = operators[i]->operate(s, actual);   
+                if(wasNotGenerated(sig)){            
+                    sig->cost = k;                      //establecemos el costo    
+                    openH->insert(sig);         
+                }
+            }
+        }
+
+
+
+    }
+}
+return 4;

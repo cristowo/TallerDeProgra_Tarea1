@@ -1,0 +1,2 @@
+- Segun yo compila todo, hice el clean antes de mandarlo, asi que espero que compile bien JSALFADSGADS
+- deje un aux de funciones que ya no sirvieron por si quieres pasar a reirte 
